@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Log.w(TAG, "onListItemClick: " + position);
         Intent myIntent = new Intent();
         myIntent.putExtra("title", article.title);
-        myIntent.putExtra("path", article.path);
+        myIntent.putExtra("url", article.url);
         myIntent.setClass(mcontext, MarkdownActivity.class);
         startActivity(myIntent);
         overridePendingTransition(R.anim.open_enter, R.anim.open_exit);

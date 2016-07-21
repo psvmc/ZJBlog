@@ -24,6 +24,8 @@ public class ZJArticle {
     public String description;
     @Column("date")
     public String date;
+    @Column("url")
+    public String url;
 
     @Override
     public String toString() {
@@ -33,17 +35,11 @@ public class ZJArticle {
                 ", path='" + path + '\'' +
                 ", description='" + description + '\'' +
                 ", date='" + date + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 
     public ZJArticle() {
     }
 
-    public ZJArticle(String title, String keywords, String path, String description, String date) {
-        this.title = title;
-        this.keywords = keywords;
-        this.path = path;
-        this.description = description;
-        this.date = date;
-    }
 }
