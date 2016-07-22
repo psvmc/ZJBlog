@@ -19,6 +19,7 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,8 +43,10 @@ public class MarkdownActivity extends AppCompatActivity {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.webView)
     WebView mWebView;
+
+    @Bind(R.id.web_frame_layout)
+    FrameLayout web_frame_layout;
 
     @Bind(R.id.progressbar)
     NumberProgressBar mProgressbar;
@@ -99,6 +102,9 @@ public class MarkdownActivity extends AppCompatActivity {
     }
 
     private void initWebView() {
+        mWebView = new WebView(getApplicationContext());
+        FrameLayout.LayoutParams layoutParams=new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
+        web_frame_layout.addView(mWebView,layoutParams);
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setLoadWithOverviewMode(true);
@@ -120,9 +126,15 @@ public class MarkdownActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-        if (mWebView != null) mWebView.destroy();
+        if (mWebView != null) {
+            web_frame_layout.removeAllViews();
+            mWebView.stopLoading();
+            mWebView.removeAllViews();
+            mWebView.destroy();
+            mWebView = null;
+        };
         ButterKnife.unbind(this);
+        super.onDestroy();
     }
 
 
