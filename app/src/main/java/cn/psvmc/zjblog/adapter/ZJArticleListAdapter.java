@@ -10,13 +10,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import cn.psvmc.zjblog.R;
 import cn.psvmc.zjblog.adapter.common.ZJCommonAdapter;
 import cn.psvmc.zjblog.model.ZJArticle;
+import me.next.tagview.TagCloudView;
 
 /**
  * Created by PSVMC on 16/7/6.
@@ -51,7 +51,14 @@ public class ZJArticleListAdapter extends ZJCommonAdapter<ZJArticle> {
         ZJArticle itemData = mDatas.get(position);
         contentViewHolder.a_title.setText(itemData.title);
         contentViewHolder.a_content.setText(itemData.description);
-        contentViewHolder.a_keywords.setText(itemData.keywords);
+        ArrayList<String> tagList = new ArrayList<>();
+        String keywords = itemData.keywords;
+        String[] keyArr = keywords.split(" ");
+        for (String key:keyArr
+             ) {
+            tagList.add(key);
+        }
+        contentViewHolder.tag_cloud_view.setTags(tagList);
         contentViewHolder.a_date.setText(itemData.date);
         //showItemAnim(contentViewHolder.a_outer_ly,position);
         contentViewHolder.a_outer_ly.setOnClickListener(new View.OnClickListener() {
@@ -100,24 +107,20 @@ public class ZJArticleListAdapter extends ZJCommonAdapter<ZJArticle> {
     }
 
     public class ContentViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.a_outer_ly)
         LinearLayout a_outer_ly;
-
-        @Bind(R.id.a_title)
         public TextView a_title;
-
-        @Bind(R.id.a_content)
         public TextView a_content;
-
-        @Bind(R.id.a_keywords)
-        public TextView a_keywords;
-
-        @Bind(R.id.a_date)
+        public TagCloudView tag_cloud_view;
         public TextView a_date;
 
         public ContentViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+
+            a_outer_ly = (LinearLayout) itemView.findViewById(R.id.a_outer_ly);
+            a_title = (TextView) itemView.findViewById(R.id.a_title);
+            a_content = (TextView) itemView.findViewById(R.id.a_content);
+            tag_cloud_view = (TagCloudView) itemView.findViewById(R.id.tag_cloud_view);
+            a_date = (TextView) itemView.findViewById(R.id.a_date);
         }
     }
 }

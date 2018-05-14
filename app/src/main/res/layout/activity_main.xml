@@ -55,6 +55,6 @@
             android:src="@drawable/zj_sync"
             app:backgroundTint="@color/zj_blue"
             app:layout_behavior="cn.psvmc.zjblog.behavior.ScrollAwareFABBehavior"
-            app:rippleColor="@color/zj_gay"/>
+            app:rippleColor="@color/zj_gay_title"/>
     </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

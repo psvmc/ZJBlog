@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorAccent">#FF4081</color>
-    <color name="zj_gay">#555555</color>
-    <color name="zj_gay_light">#dddddd</color>
+    <color name="zj_gay_title">#555555</color>
+    <color name="zj_gay_title2">#aaaaaa</color>
+    <color name="zj_gay_light">#dfdfdf</color>
     <color name="zj_gay_background">#f3f3f3
     </color>
     <color name="clearColor">#00000000</color>
